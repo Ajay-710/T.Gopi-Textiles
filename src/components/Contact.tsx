@@ -32,43 +32,48 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-foreground">
-            Get In <span className="gradient-silk bg-clip-text text-transparent">Touch</span>
+    <section id="contact" className="py-24 md:py-32 bg-gradient-to-b from-background to-muted/30 relative overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute top-0 left-1/3 w-80 h-80 bg-primary/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-1/3 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-20 animate-fade-in-up">
+          <h2 className="text-4xl md:text-6xl font-serif font-bold mb-6 text-foreground">
+            Get In <span className="text-gradient-silk">Touch</span>
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+          <div className="w-24 h-1 bg-gradient-silk mx-auto mb-6 rounded-full"></div>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Visit our store or reach out to us. We're here to help you find the perfect textile
           </p>
         </div>
 
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
             {contactInfo.map((info, index) => (
               <Card 
                 key={index} 
-                className="border-2 hover:border-primary transition-smooth animate-fade-in shadow-elegant hover:shadow-2xl"
-                style={{ animationDelay: `${index * 0.15}s` }}
+                className="gradient-card border-2 border-border hover:border-primary transition-bounce animate-fade-in-up shadow-elegant hover:shadow-dramatic group"
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <CardContent className="pt-8 text-center">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full gradient-silk mb-6">
-                    <info.icon className="w-8 h-8 text-primary-foreground" />
+                <CardContent className="pt-10 pb-8 text-center">
+                  <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl gradient-silk mb-6 shadow-elegant group-hover:scale-110 transition-bounce">
+                    <info.icon className="w-10 h-10 text-primary-foreground" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-4 text-foreground">{info.title}</h3>
-                  <div className="space-y-2">
+                  <h3 className="text-2xl font-serif font-bold mb-5 text-foreground">{info.title}</h3>
+                  <div className="space-y-2 mb-6">
                     {info.details.map((detail, idx) => (
-                      <p key={idx} className="text-muted-foreground">
+                      <p key={idx} className="text-muted-foreground text-lg">
                         {detail}
                       </p>
                     ))}
                   </div>
                   <Button 
-                    className="mt-4 gradient-gold text-foreground hover:opacity-90 transition-smooth"
+                    className="gradient-gold text-foreground hover:shadow-elegant hover:scale-105 transition-bounce font-semibold px-6 rounded-full"
                     asChild
                   >
                     <a href={info.action} target="_blank" rel="noopener noreferrer">
-                      Connect
+                      Connect Now
                     </a>
                   </Button>
                 </CardContent>
@@ -76,18 +81,19 @@ const Contact = () => {
             ))}
           </div>
 
-          <Card className="bg-card/80 backdrop-blur border-2 border-primary/20 animate-fade-in">
-            <CardContent className="pt-8">
-              <h3 className="text-2xl font-serif font-semibold mb-6 text-center gradient-gold bg-clip-text text-transparent">
+          <Card className="gradient-card backdrop-blur border-2 border-primary/30 shadow-dramatic animate-fade-in-up overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-silk opacity-5"></div>
+            <CardContent className="pt-12 pb-10 px-6 relative">
+              <h3 className="text-3xl font-serif font-bold mb-8 text-center text-gradient-gold">
                 Connect With Us On Social Media
               </h3>
-              <div className="flex flex-wrap justify-center gap-4">
+              <div className="flex flex-wrap justify-center gap-4 mb-10">
                 {socialLinks.map((social, index) => (
                   <Button
                     key={index}
                     variant="outline"
                     size="lg"
-                    className={`border-2 transition-smooth ${social.color}`}
+                    className={`border-2 transition-bounce hover:scale-110 ${social.color} rounded-full px-6 font-semibold shadow-soft hover:shadow-elegant`}
                     asChild
                   >
                     <a href={social.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
@@ -98,14 +104,14 @@ const Contact = () => {
                 ))}
               </div>
 
-              <div className="mt-8 text-center">
+              <div className="text-center">
                 <Button 
                   size="lg"
-                  className="gradient-silk text-primary-foreground hover:opacity-90 transition-smooth"
+                  className="gradient-silk text-primary-foreground hover:shadow-dramatic hover:scale-105 transition-bounce rounded-full px-8 py-6 font-semibold text-lg"
                   asChild
                 >
                   <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer">
-                    <MapPin className="w-5 h-5 mr-2" />
+                    <MapPin className="w-6 h-6 mr-2" />
                     View on Google Maps
                   </a>
                 </Button>

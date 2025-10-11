@@ -28,50 +28,57 @@ const Collections = () => {
   ];
 
   return (
-    <section id="collections" className="py-20 bg-gradient-to-b from-background to-muted/30">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-foreground">
-            Our <span className="gradient-silk bg-clip-text text-transparent">Collections</span>
+    <section id="collections" className="py-24 md:py-32 bg-gradient-to-b from-background via-muted/30 to-background relative overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute top-20 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-20 animate-fade-in-up">
+          <h2 className="text-4xl md:text-6xl font-serif font-bold mb-6 text-foreground">
+            Our <span className="text-gradient-silk">Collections</span>
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+          <div className="w-24 h-1 bg-gradient-silk mx-auto mb-6 rounded-full"></div>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Explore our carefully curated selection of traditional and contemporary textiles
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
           {collections.map((collection, index) => (
             <Card 
               key={index} 
-              className="overflow-hidden border-2 hover:border-primary transition-smooth group animate-fade-in shadow-elegant hover:shadow-2xl"
-              style={{ animationDelay: `${index * 0.2}s` }}
+              className="overflow-hidden border-2 border-border hover:border-primary transition-bounce group animate-fade-in-up shadow-elegant hover:shadow-dramatic"
+              style={{ animationDelay: `${index * 0.15}s` }}
             >
-              <div className="relative overflow-hidden h-80">
+              <div className="relative overflow-hidden h-96">
                 <img 
                   src={collection.image} 
                   alt={collection.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-smooth"
+                  className="w-full h-full object-cover group-hover:scale-110 group-hover:rotate-2 transition-all duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent opacity-0 group-hover:opacity-100 transition-smooth"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent opacity-40 group-hover:opacity-80 transition-smooth"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-smooth">
+                  <h3 className="text-3xl font-serif font-bold text-white drop-shadow-lg text-gradient-gold">
+                    {collection.title}
+                  </h3>
+                </div>
               </div>
-              <CardContent className="pt-6">
-                <h3 className="text-2xl font-serif font-bold mb-3 gradient-gold bg-clip-text text-transparent">
-                  {collection.title}
-                </h3>
-                <p className="text-muted-foreground mb-4">{collection.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
+              <CardContent className="pt-6 pb-8 px-6 gradient-card">
+                <p className="text-muted-foreground mb-5 leading-relaxed">{collection.description}</p>
+                <div className="flex flex-wrap gap-2 mb-6">
                   {collection.features.map((feature, idx) => (
                     <span 
                       key={idx}
-                      className="inline-flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-medium border border-primary/20 hover:bg-primary/20 transition-smooth"
                     >
-                      <Sparkles className="w-3 h-3" />
+                      <Sparkles className="w-3.5 h-3.5" />
                       {feature}
                     </span>
                   ))}
                 </div>
                 <Button 
-                  className="w-full gradient-silk text-primary-foreground hover:opacity-90 transition-smooth"
+                  className="w-full gradient-silk text-primary-foreground hover:shadow-dramatic hover:scale-105 transition-bounce rounded-full font-semibold py-6"
                   asChild
                 >
                   <a href="#contact">Inquire Now</a>
