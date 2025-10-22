@@ -21,13 +21,20 @@ const Hero = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div 
-        className="absolute inset-0 bg-cover bg-center scale-105 transition-opacity duration-1000"
-        style={{ backgroundImage: `url(${images[currentImageIndex]})` }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/50 to-background/90"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10"></div>
-      </div>
+      {images.map((image, index) => (
+        <div
+          key={index}
+          className="absolute inset-0 bg-cover bg-center scale-105 transition-all duration-1000 ease-in-out"
+          style={{
+            backgroundImage: `url(${image})`,
+            transform: `translateX(${(index - currentImageIndex) * 100}%)`,
+            opacity: index === currentImageIndex ? 1 : 0,
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/50 to-background/90"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10"></div>
+        </div>
+      ))}
       
       <div className="relative z-10 container mx-auto px-4 text-center">
         <div className="animate-fade-in-up">
