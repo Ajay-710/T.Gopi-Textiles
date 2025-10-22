@@ -1,12 +1,29 @@
-import heroImage from "@/assets/hero-textiles.jpg";
-import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
+import slideshow1 from "@/assets/slideshow-1.jpg";
+import slideshow2 from "@/assets/slideshow-2.jpg";
+import slideshow3 from "@/assets/slideshow-3.jpg";
+import slideshow4 from "@/assets/slideshow-4.jpg";
+import slideshow5 from "@/assets/slideshow-5.jpg";
+import slideshow6 from "@/assets/slideshow-6.jpg";
+import slideshow7 from "@/assets/slideshow-7.jpg";
 
 const Hero = () => {
+  const images = [slideshow1, slideshow2, slideshow3, slideshow4, slideshow5, slideshow6, slideshow7];
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 3000); // Change image every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [images.length]);
+
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div 
-        className="absolute inset-0 bg-cover bg-center scale-105"
-        style={{ backgroundImage: `url(${heroImage})` }}
+        className="absolute inset-0 bg-cover bg-center scale-105 transition-opacity duration-1000"
+        style={{ backgroundImage: `url(${images[currentImageIndex]})` }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/50 to-background/90"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10"></div>
@@ -23,23 +40,6 @@ const Hero = () => {
           <p className="text-xl md:text-2xl lg:text-3xl text-foreground/80 mb-10 max-w-3xl mx-auto leading-relaxed font-light">
             Discover the finest collection of silk sarees, cotton sarees, and dress materials crafted with tradition and love
           </p>
-          <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
-            <Button 
-              size="lg" 
-              className="gradient-silk text-primary-foreground hover:shadow-dramatic hover:scale-105 transition-bounce text-lg px-10 py-6 rounded-full font-semibold"
-              asChild
-            >
-              <a href="#collections">Explore Collections</a>
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="border-2 border-foreground/80 text-foreground bg-background/80 backdrop-blur-sm hover:bg-foreground hover:text-background transition-smooth text-lg px-10 py-6 rounded-full font-semibold"
-              asChild
-            >
-              <a href="#contact">Contact Us</a>
-            </Button>
-          </div>
         </div>
       </div>
       
