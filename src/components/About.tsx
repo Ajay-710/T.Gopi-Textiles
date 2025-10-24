@@ -60,7 +60,7 @@ const About = () => {
           <Card className="gradient-card backdrop-blur border-2 border-primary/30 shadow-dramatic overflow-hidden">
             <div className="absolute inset-0 bg-gradient-silk opacity-5"></div>
             <CardContent className="pt-12 pb-10 px-8 relative">
-              <h3 className="text-3xl font-serif font-bold mb-6 text-center text-gradient-gold">
+              <h3 className="text-3xl font-serif font-bold mb-6 text-center text-gradient-silk">
                 Our Mission
               </h3>
               <p className="text-lg text-muted-foreground leading-relaxed text-center">

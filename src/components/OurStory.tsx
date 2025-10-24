@@ -55,7 +55,7 @@ const OurStory = () => {
               </div>
             </div>
             <div className="animate-fade-in-up space-y-6" style={{ animationDelay: '0.2s' }}>
-              <h3 className="text-4xl font-serif font-bold text-gradient-gold">
+              <h3 className="text-4xl font-serif font-bold text-gradient-silk">
                 A Legacy Woven with Care
               </h3>
               <p className="text-muted-foreground leading-relaxed text-lg">
