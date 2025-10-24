@@ -6,9 +6,10 @@ import slideshow4 from "@/assets/slideshow-4.jpg";
 import slideshow5 from "@/assets/slideshow-5.jpg";
 import slideshow6 from "@/assets/slideshow-6.jpg";
 import slideshow7 from "@/assets/slideshow-7.jpg";
+import slideshow8 from "@/assets/slideshow-8.jpg";
 
 const Hero = () => {
-  const images = [slideshow1, slideshow2, slideshow3, slideshow4, slideshow5, slideshow6, slideshow7];
+  const images = [slideshow1, slideshow8, slideshow2, slideshow3, slideshow4, slideshow5, slideshow6, slideshow7];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
