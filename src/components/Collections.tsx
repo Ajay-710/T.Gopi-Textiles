@@ -81,7 +81,7 @@ const Collections = () => {
                   className="w-full gradient-silk text-primary-foreground hover:shadow-dramatic hover:scale-105 transition-bounce rounded-full font-semibold py-6"
                   asChild
                 >
-                  <a href="#contact">Inquire Now</a>
+                  <a href="#contact">Enquire Now</a>
                 </Button>
               </CardContent>
             </Card>
