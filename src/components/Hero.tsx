@@ -20,15 +20,16 @@ const Hero = () => {
   }, [images.length]);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
       {images.map((image, index) => (
         <div
           key={index}
-          className="absolute inset-0 bg-cover bg-center scale-105 transition-all duration-1000 ease-in-out"
+          className="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out"
           style={{
             backgroundImage: `url(${image})`,
             transform: `translateX(${(index - currentImageIndex) * 100}%)`,
             opacity: index === currentImageIndex ? 1 : 0,
+            zIndex: index === currentImageIndex ? 1 : 0,
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/50 to-background/90"></div>
@@ -38,13 +39,13 @@ const Hero = () => {
       
       <div className="relative z-10 container mx-auto px-4 text-center">
         <div className="animate-fade-in-up">
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-bold mb-8 text-foreground leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-8 text-foreground leading-tight">
             Timeless Elegance in
             <span className="block text-gradient-silk mt-2 animate-shimmer bg-[length:200%_auto]">
               Every Thread
             </span>
           </h1>
-          <p className="text-xl md:text-2xl lg:text-3xl text-foreground/80 mb-10 max-w-3xl mx-auto leading-relaxed font-light">
+          <p className="text-lg md:text-xl lg:text-2xl text-foreground/80 mb-10 max-w-3xl mx-auto leading-relaxed font-light">
             Discover the finest collection of silk sarees, cotton sarees, and dress materials crafted with tradition and love
           </p>
         </div>

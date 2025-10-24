@@ -44,14 +44,14 @@ const Collections = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {collections.map((collection, index) => (
             <Card 
               key={index} 
               className="overflow-hidden border-2 border-border hover:border-primary transition-bounce group animate-fade-in-up shadow-elegant hover:shadow-dramatic"
               style={{ animationDelay: `${index * 0.15}s` }}
             >
-              <div className="relative overflow-hidden h-96">
+              <div className="relative overflow-hidden h-72">
                 <img 
                   src={collection.image} 
                   alt={collection.title}

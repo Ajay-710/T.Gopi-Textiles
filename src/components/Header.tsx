@@ -31,7 +31,7 @@ const Header = () => {
     >
       <nav className="container mx-auto px-4 py-5">
         <div className="flex items-center justify-between">
-          <a href="#home" className="text-2xl md:text-3xl font-serif font-bold text-gradient-silk hover:scale-105 transition-bounce">
+          <a href="/auth" className="text-2xl md:text-3xl font-serif font-bold text-gradient-silk hover:scale-105 transition-bounce">
             T.Gopi Textiles
           </a>
 
