@@ -1,44 +1,9 @@
-import { useState, useEffect } from "react";
-import slideshow1 from "@/assets/slideshow-1.jpg";
-import slideshow2 from "@/assets/slideshow-2.jpg";
-import slideshow3 from "@/assets/slideshow-3.jpg";
-import slideshow4 from "@/assets/slideshow-4.jpg";
-import slideshow5 from "@/assets/slideshow-5.jpg";
-import slideshow6 from "@/assets/slideshow-6.jpg";
-import slideshow7 from "@/assets/slideshow-7.jpg";
-import slideshow8 from "@/assets/slideshow-8.jpg";
-
 const Hero = () => {
-  const images = [slideshow1, slideshow8, slideshow2, slideshow3, slideshow4, slideshow5, slideshow6, slideshow7];
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000); // Change image every 3 seconds
-
-    return () => clearInterval(interval);
-  }, [images.length]);
-
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Base background to prevent white flash */}
-      <div className="absolute inset-0 bg-black"></div>
-      
-      {images.map((image, index) => (
-        <div
-          key={index}
-          className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out"
-          style={{
-            backgroundImage: `url(${image})`,
-            opacity: index === currentImageIndex ? 1 : 0,
-            zIndex: index === currentImageIndex ? 2 : 1,
-          }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/50 to-background/90"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10"></div>
-        </div>
-      ))}
+      {/* Gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-background/95"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-accent/5"></div>
       
       <div className="relative z-10 container mx-auto px-4 text-center">
         <div className="animate-fade-in-up">

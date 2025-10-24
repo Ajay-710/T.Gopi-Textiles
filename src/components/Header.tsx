@@ -25,7 +25,7 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-smooth ${
-        isScrolled ? "bg-card/98 backdrop-blur-xl shadow-dramatic border-b border-border/50" : "bg-transparent"
+        isScrolled ? "bg-card/98 backdrop-blur-xl shadow-dramatic border-b border-border/50" : "bg-background/30 backdrop-blur-md"
       }`}
     >
       <nav className="container mx-auto px-4 py-5">
@@ -40,7 +40,7 @@ const Header = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-foreground/70 hover:text-primary transition-smooth font-medium text-lg relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-primary after:transition-all after:duration-300"
+                className="text-foreground/80 hover:text-primary transition-smooth font-bold text-lg relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-primary after:transition-all after:duration-300"
               >
                 {item.name}
               </a>
@@ -66,7 +66,7 @@ const Header = () => {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-foreground/80 hover:text-primary transition-smooth font-medium text-lg"
+                  className="text-foreground/80 hover:text-primary transition-smooth font-bold text-lg"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
