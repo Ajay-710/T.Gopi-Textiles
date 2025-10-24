@@ -20,16 +20,18 @@ const Hero = () => {
   }, [images.length]);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Base background to prevent white flash */}
+      <div className="absolute inset-0 bg-black"></div>
+      
       {images.map((image, index) => (
         <div
           key={index}
-          className="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out"
+          className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out"
           style={{
             backgroundImage: `url(${image})`,
-            transform: `translateX(${(index - currentImageIndex) * 100}%)`,
             opacity: index === currentImageIndex ? 1 : 0,
-            zIndex: index === currentImageIndex ? 1 : 0,
+            zIndex: index === currentImageIndex ? 2 : 1,
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/50 to-background/90"></div>
