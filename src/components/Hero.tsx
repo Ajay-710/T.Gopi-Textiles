@@ -24,21 +24,22 @@ const Hero = () => {
       {/* Slideshow background with sliding animation */}
       <div className="absolute inset-0 overflow-hidden">
         <div 
-          className="flex h-full transition-transform duration-700 ease-in-out"
+          className="flex h-full w-full transition-transform duration-1000 ease-in-out"
           style={{ 
             transform: `translateX(-${currentImageIndex * 100}%)`,
-            width: `${images.length * 100}%`
           }}
         >
           {images.map((image, index) => (
             <div
               key={index}
-              className="h-full bg-cover bg-center flex-shrink-0"
-              style={{ 
-                backgroundImage: `url(${image})`,
-                width: `${100 / images.length}%`
-              }}
-            />
+              className="min-w-full h-full flex-shrink-0"
+            >
+              <img 
+                src={image} 
+                alt={`Slideshow ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
+            </div>
           ))}
         </div>
         {/* Dark overlay for better text readability */}
