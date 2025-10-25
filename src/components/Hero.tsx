@@ -20,11 +20,11 @@ const Hero = () => {
   }, [images.length]);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative w-full h-screen flex items-center justify-center overflow-hidden">
       {/* Slideshow background with sliding animation */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
         <div 
-          className="flex h-full w-full transition-transform duration-1000 ease-in-out"
+          className="flex h-full transition-transform duration-1000 ease-in-out"
           style={{ 
             transform: `translateX(-${currentImageIndex * 100}%)`,
           }}
@@ -32,12 +32,13 @@ const Hero = () => {
           {images.map((image, index) => (
             <div
               key={index}
-              className="min-w-full h-full flex-shrink-0"
+              className="w-full h-full flex-shrink-0"
+              style={{ minWidth: '100vw' }}
             >
               <img 
                 src={image} 
                 alt={`Slideshow ${index + 1}`}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-center"
               />
             </div>
           ))}
