@@ -1,80 +1,37 @@
-import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { navLinks } from "@/constants";
 
-const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+interface HeaderProps {
+  onLoginClick: () => void;
+}
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const navItems = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Our Story", href: "#story" },
-    { name: "Collections", href: "#collections" },
-    { name: "Contact", href: "#contact" },
-  ];
-
+const Header = ({ onLoginClick }: HeaderProps) => {
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-smooth ${
-        isScrolled ? "bg-card/98 backdrop-blur-xl shadow-dramatic border-b border-border/50" : "bg-background/30 backdrop-blur-md"
-      }`}
-    >
-      <nav className="container mx-auto px-4 py-5">
-        <div className="flex items-center justify-between">
-          <a href="/auth" className="text-2xl md:text-3xl font-serif font-bold text-gradient-silk hover:scale-105 transition-bounce">
-            T.Gopi Textiles
-          </a>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-10">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-foreground/80 hover:text-primary transition-smooth font-bold text-lg relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-primary after:transition-all after:duration-300"
-              >
-                {item.name}
-              </a>
-            ))}
-          </div>
-
-          {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X /> : <Menu />}
-          </Button>
+    <header className="fixed top-0 left-0 right-0 z-10">
+      <nav className="container flex items-center justify-between py-5">
+        {/*
+          --- THIS IS THE CORRECTED PART ---
+          - Changed `text-white` to `text-gradient-silk`.
+          - This will apply the red/pink gradient to the logo text.
+        */}
+        <div
+          onClick={onLoginClick}
+          className="text-2xl font-bold tracking-tighter cursor-pointer text-gradient-silk"
+        >
+          T.Gopi Textiles
         </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-card border-b border-border shadow-elegant animate-slide-in">
-            <div className="flex flex-col gap-4 p-6">
-              {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-foreground/80 hover:text-primary transition-smooth font-bold text-lg"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.name}
-                </a>
-              ))}
-            </div>
-          </div>
-        )}
+        <ul className="hidden items-center gap-10 lg:flex">
+          {navLinks.map((link) => (
+            <li key={link.id}>
+              <a
+                href={`#${link.id}`}
+                className="font-medium text-white transition-smooth hover:text-gradient-silk"
+              >
+                {link.title}
+              </a>
+            </li>
+          ))}
+        </ul>
       </nav>
     </header>
   );
