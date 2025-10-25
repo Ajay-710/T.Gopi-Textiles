@@ -10,41 +10,37 @@ import slideshow7 from "@/assets/slideshow-7.jpg";
 const Hero = () => {
   const images = [slideshow1, slideshow2, slideshow3, slideshow4, slideshow5, slideshow6, slideshow7];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [nextImageIndex, setNextImageIndex] = useState(1);
-  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIsTransitioning(true);
-      setNextImageIndex((currentImageIndex + 1) % images.length);
-      
-      setTimeout(() => {
-        setCurrentImageIndex((currentImageIndex + 1) % images.length);
-        setIsTransitioning(false);
-      }, 1000);
-    }, 5000);
+      setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    }, 4000);
 
     return () => clearInterval(interval);
-  }, [currentImageIndex, images.length]);
+  }, [images.length]);
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Slideshow background */}
-      <div className="absolute inset-0">
+      {/* Slideshow background with sliding animation */}
+      <div className="absolute inset-0 overflow-hidden">
         <div 
-          className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000"
+          className="flex h-full transition-transform duration-1000 ease-in-out"
           style={{ 
-            backgroundImage: `url(${images[currentImageIndex]})`,
-            opacity: isTransitioning ? 0 : 1
+            transform: `translateX(-${currentImageIndex * 100}%)`,
+            width: `${images.length * 100}%`
           }}
-        />
-        <div 
-          className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000"
-          style={{ 
-            backgroundImage: `url(${images[nextImageIndex]})`,
-            opacity: isTransitioning ? 1 : 0
-          }}
-        />
+        >
+          {images.map((image, index) => (
+            <div
+              key={index}
+              className="h-full bg-cover bg-center flex-shrink-0"
+              style={{ 
+                backgroundImage: `url(${image})`,
+                width: `${100 / images.length}%`
+              }}
+            />
+          ))}
+        </div>
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-black/40"></div>
       </div>
