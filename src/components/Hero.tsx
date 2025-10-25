@@ -1,27 +1,67 @@
+import { useState, useEffect } from "react";
+import slideshow1 from "@/assets/slideshow-1.jpg";
+import slideshow2 from "@/assets/slideshow-2.jpg";
+import slideshow3 from "@/assets/slideshow-3.jpg";
+import slideshow4 from "@/assets/slideshow-4.jpg";
+import slideshow5 from "@/assets/slideshow-5.jpg";
+import slideshow6 from "@/assets/slideshow-6.jpg";
+import slideshow7 from "@/assets/slideshow-7.jpg";
+
 const Hero = () => {
+  const images = [slideshow1, slideshow2, slideshow3, slideshow4, slideshow5, slideshow6, slideshow7];
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [nextImageIndex, setNextImageIndex] = useState(1);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsTransitioning(true);
+      setNextImageIndex((currentImageIndex + 1) % images.length);
+      
+      setTimeout(() => {
+        setCurrentImageIndex((currentImageIndex + 1) % images.length);
+        setIsTransitioning(false);
+      }, 1000);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [currentImageIndex, images.length]);
+
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-background/95"></div>
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-accent/5"></div>
+      {/* Slideshow background */}
+      <div className="absolute inset-0">
+        <div 
+          className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000"
+          style={{ 
+            backgroundImage: `url(${images[currentImageIndex]})`,
+            opacity: isTransitioning ? 0 : 1
+          }}
+        />
+        <div 
+          className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000"
+          style={{ 
+            backgroundImage: `url(${images[nextImageIndex]})`,
+            opacity: isTransitioning ? 1 : 0
+          }}
+        />
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/40"></div>
+      </div>
       
       <div className="relative z-10 container mx-auto px-4 text-center">
         <div className="animate-fade-in-up">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-8 text-foreground leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-8 text-white leading-tight drop-shadow-lg">
             Timeless Elegance in
             <span className="block text-gradient-silk mt-2 animate-shimmer bg-[length:200%_auto]">
               Every Thread
             </span>
           </h1>
-          <p className="text-lg md:text-xl lg:text-2xl text-foreground/80 mb-10 max-w-3xl mx-auto leading-relaxed font-light">
+          <p className="text-lg md:text-xl lg:text-2xl text-white/90 mb-10 max-w-3xl mx-auto leading-relaxed font-light drop-shadow-lg">
             Discover the finest collection of silk sarees, cotton sarees, and dress materials crafted with tradition and love
           </p>
         </div>
       </div>
-      
-      {/* Decorative gradient orbs */}
-      <div className="absolute top-1/4 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-float"></div>
-      <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
     </section>
   );
 };
