@@ -14,7 +14,7 @@ const Hero = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % images.length);
-    }, 4000);
+    }, 5000); // 5 seconds per image
 
     return () => clearInterval(interval);
   }, [images.length]);
@@ -24,7 +24,7 @@ const Hero = () => {
       {/* Slideshow background with sliding animation */}
       <div className="absolute inset-0 overflow-hidden">
         <div 
-          className="flex h-full transition-transform duration-1000 ease-in-out"
+          className="flex h-full transition-transform duration-700 ease-in-out"
           style={{ 
             transform: `translateX(-${currentImageIndex * 100}%)`,
             width: `${images.length * 100}%`
